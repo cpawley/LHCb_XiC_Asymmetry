@@ -2,7 +2,9 @@ import ROOT
 from array import array
 import os, sys
 
-def train(bkgTree, sigTree, discriList, MVAmethod, nTraining, label, cuts):
+def train(bkgTree, sigTree, discriList, MVAmethod, nTraining, label, cuts, numtrees):
+
+    print(f'Started training BDT with {numtrees} trees')
 
     Nproc1 = float(bkgTree.GetEntries())
     Nproc2 = float(sigTree.GetEntries())
@@ -31,16 +33,16 @@ def train(bkgTree, sigTree, discriList, MVAmethod, nTraining, label, cuts):
     bkgcut = ROOT.TCut(cuts)
 
     dataloader.PrepareTrainingAndTestTree( ROOT.TCut( sigcut ), ROOT.TCut( bkgcut ),
-                                      ':'.join([ 'nTrain_Signal={}'.format(nTraining),     # Number of signal events used, 0 = ALL
-                                               'nTrain_Background={}'.format(nTraining), # Number of background events, 0 = ALL
-                                               'nTest_Signal={}'.format(nTraining),     # Number of signal events used, 0 = ALL
-                                               'nTest_Background={}'.format(nTraining), # Number of background events, 0 = ALL
+                                      ':'.join([ 'nTrain_Signal={}'.format(int(nTraining * Nproc2)),     # Number of signal events used, 0 = ALL
+                                               'nTrain_Background={}'.format(int(nTraining * Nproc1)), # Number of background events, 0 = ALL
+                                               'nTest_Signal={}'.format(int((1 - nTraining) * Nproc2)),     # Number of signal events used, 0 = ALL
+                                               'nTest_Background={}'.format(int((1 - nTraining) * Nproc1)), # Number of background events, 0 = ALL
                                                'SplitMode=Random',    # How are events chosen to be used for either training or testing
                                                'NormMode=NumEvents',  # Integral of datasets is given by number of events
                                                                       #   (could e.g. also be sum of weights or simply defined to be 1)
                                                '!V'                   # Don't print everything (i.e. not verbose) 
                                                ]))
-    BDTcfg = '!H:!V:NTrees=900:MaxDepth=4:BoostType=AdaBoost:AdaBoostBeta=0.5:SeparationType=GiniIndex:nCuts=20:PruneMethod=NoPruning'
+    BDTcfg = f'!H:!V:NTrees={numtrees}:MaxDepth=4:BoostType=AdaBoost:AdaBoostBeta=0.5:SeparationType=GiniIndex:nCuts=20:PruneMethod=NoPruning'
     MLPcfg = 'H:!V:NeuronType=tanh:VarTransform=N:NCycles=600:HiddenLayers=N+5:TestRate=5:!UseRegulator'
 
     if MVAmethod == 'BDT':
