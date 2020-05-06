@@ -1,0 +1,17 @@
+This is the first BDT which will be created from the Xic -> pKpi collision data.
+
+
+In this BDT, I used the 16 variables: "lcplus_PT", "lcplus_ENDVERTEX_CHI2", "lcplus_IPCHI2",
+"lcplus_FD_OWNPV", "pplus_ProbNNp", "pplus_PT", "pplus_IPCHI2_OWNPV", "pplus_OWNPV_CHI2",
+"kminus_ProbNNk", "kminus_PT", "kminus_IPCHI2_OWNPV", "kminus_OWNPV_CHI2", "piplus_ProbNNpi",
+"piplus_PT", "piplus_IPCHI2_OWNPV", "piplus_OWNPV_CHI2".
+
+
+The background data is discriminated on the mass of the mother particle, 2450 < M < 2480.
+
+The signal is filtered to only take events into account for which the Level 0 (hadron for
+daughter particles, global for mother particles) trigger was activated.
+
+The resulting root file is stored in the folder outputs_BDTs/BDT_run1. In this run I will
+test some different amount of trees to boost with, starting with [10, 800, 2500] and maybe
+some other amounts in later runs (this depends on the results of this run) 
