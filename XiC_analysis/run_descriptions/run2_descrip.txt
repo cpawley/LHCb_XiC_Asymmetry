@@ -1,0 +1,18 @@
+The first run didn't go exactly as planned. After TMVA had finished (or so I thought)
+building the BDT, I checked the output of the script and saw that something went wrong.
+After some further inspection it turned out that I had already used all my storage
+in my home directory, and the (big) .root files which are used to store the BDT's in
+could not be saved. The only file which could be partially saved was the 10 tree run,
+but since this one isn't completed it cannot be used for analysis and it isn't really
+useful to start with (10 trees is an extreme case to help in determination of overfitting).
+
+After asking Chris about it, I learned that there is a lot more disk space available to
+store data in '/data/bfys/mkoopmans'. So I now create all my trees there.
+
+Another issue I didn't take into account was the fact that I used **all** data for both
+training and testing, which we for sure don't want (as this will give a far more perfect
+view of our BDT than might actually be the case). Taking this into account, I will now
+look at a 80/20 split of the data into training/testing sets.
+
+In this run I will apply both changes listed above and see if I can get some results this
+time.

@@ -1,0 +1,18 @@
+When I tried to view the results of run 2, I encountered an error which I
+discovered was from a lack of RAM. My code was quite inefficient and RAM-heavy,
+so I updated it in this run. Initially, each time I ran the code the data
+files were chained in their entirety into the script (and thus into the RAM).
+I then copied them to cut out the non-desired data, which amounted in almost
+twice as much RAM usage. When the stoomboot clusters are busy, this will not
+work and my script will terminate.
+
+This called for a different solution. Now, I chain and cut the data only once,
+and I save the data in two .root files. I also take out about 400 branches which
+I don't use, by storing only the branches which represent the variables we want
+to either train on or cut at. This really cuts down on both the time it takes
+to store the files and the sizes of the files themselves.
+
+Now, using this data for training is simple; just import the .root TFiles and
+.Get the tree from there. From here on, the process is pretty much the same as
+earlier; the data is used to train and test (80/20 split) the BDT, which is saved
+and can be analyzed later.

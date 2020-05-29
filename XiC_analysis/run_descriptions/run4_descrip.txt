@@ -1,0 +1,27 @@
+I quickly figured out that the code described for run 3 needed some
+tweaking. Even loading the cut and filtered data from just one file
+seemed too much for the server too handle. So I instead followed the
+same data-keeping scheme as the 'raw data'. I cut all data and saved
+the data in small subfolders, which I would then load into the training
+script.
+
+So, after trying this code, I quickly ran into an annoying error.
+The BookMethod() method from the TMVA dataloader class would not work for
+some reason. It took me the better part of a week frantically googling around
+and trying fixes, until yesterday I found the solution. After I messaged a
+user who had reported the issue fixed on the PyROOT forum, he sent me his solution.
+
+It turned out that when loading all the data file by file, you need to keep
+(a pointer to) each AND each tree file open. I looped through all files and
+opened a tree, so with each iteration the previous file and tree got lost.
+I fixed this by keeping all files and trees stored in a list, so that the
+dataloader knows where to find them. This fixed my issue nicely, but also
+brought with it another issue: RAM. Processing the data and training the BDT
+is still very RAM-intensive. I fixed this by running the script in the gpu queue,
+which assigns 64 GB of RAM to a process.
+
+Update:
+The aforementioned changes were succesful. After the first output of 10, 800 and
+2500 trees, I decided that I wanted to look at some trees in between 10 and 800.
+From 800 to 2500 trees the classifier became increasingly bad at classifying, so
+from now on I look at 10, 200, 400, 650 and 800 trees.
