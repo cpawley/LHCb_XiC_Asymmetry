@@ -1,0 +1,3 @@
+The exponentiations of variables contributed absolutely nothing, except for
+the lcplus_IP_OWNPV. I therefor only kept this one exponentiated and ran the
+tree again.

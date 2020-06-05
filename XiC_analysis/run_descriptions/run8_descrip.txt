@@ -1,0 +1,3 @@
+Defining a specified mass window seemed to help a lot, as the ROC AUC shot up
+at run 7. In this run I re-added the IPCHI2_OWNPV variables on advice of Chris, as
+this variables worked well to differentiate in another research.

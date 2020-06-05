@@ -1,0 +1,7 @@
+Increasing the max tree depth from 4 to 5 didn't change anything regarding
+the ROC AUC. Now, instead of log-transforming all variables, I thought it
+might be wise to exponentiate some variables. I exponentiated all IP_OWNPV
+values based on visual inspection. I divided lcplus_TIP and lcplus_FD_OWNPV
+with 100 and 1000 respectively, and then I exponentiated them. I also transformed
+all ProbNN values, by taking 1 - sqrt(1 - ProbNN), which Emmy Gabriels used
+in her research.

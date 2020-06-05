@@ -1,0 +1,4 @@
+The changes made in run 10 seemed to change a little, but not too much. The
+difference in ROC AUC was nothing to write home about. In this run I changed
+the max depth of a tree from 4 to 5, to see if this adds more decisiveness
+to the BDT.
