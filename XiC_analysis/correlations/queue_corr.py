@@ -8,7 +8,7 @@ Author: Maris Koopmans
 import os, sys
 
 # Define the output directory
-output_dir = f'~/LHCb_XiC_Asymmetry/XiC_analysis'
+output_dir = f'~/LHCb_XiC_Asymmetry/XiC_analysis/correlations'
 
 # Calculate correlations for both signal and background
 for label in ["signal", "background"]:
@@ -25,7 +25,7 @@ for label in ["signal", "background"]:
 	os.system(f'echo {run_cmd} >> {submit_script}')
 
 	# Define the command to run the script on the cluster and run it
-	run_command = f"qsub -j oe -o correlation_calc_{label}_2.out {submit_script}"
+	run_command = f"qsub -q long -j oe -o correlation_calc_{label}_more_vars.out {submit_script}"
 	os.system(run_command)
 
 	# Delete the temporary bash file to keep the directory clean

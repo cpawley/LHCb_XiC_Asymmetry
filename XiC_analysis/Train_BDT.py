@@ -97,7 +97,7 @@ def train(bkgFile, sigFile, discriList, transfoList, MVAmethod, nTraining, label
     print('Prepared training and testing tree')
 
     # Configuration string for the BDT, can be modified
-    BDTcfg = f'!H:!V:NTrees={numtrees}:MaxDepth=4:BoostType=AdaBoost:AdaBoostBeta=0.5:SeparationType=GiniIndex:nCuts=20:PruneMethod=NoPruning'
+    BDTcfg = f'!H:!V:NTrees={numtrees}:MaxDepth=5:BoostType=AdaBoost:AdaBoostBeta=0.5:SeparationType=GiniIndex:nCuts=20:PruneMethod=NoPruning'
 
     factory.BookMethod(dataloader, ROOT.TMVA.Types.kBDT, 'BDT_'+label,BDTcfg)
 

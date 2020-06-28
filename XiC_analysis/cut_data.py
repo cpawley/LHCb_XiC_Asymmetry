@@ -64,7 +64,7 @@ def cut_tree_small_files(label, path, extension, jobs, filter_str, variables, tr
 			tree_raw.SetBranchStatus(var, 1)
 
 		# Define the output file
-		out_file = ROOT.TFile(f'/data/bfys/mkoopmans/data/{label}_extravars/{label}_cut_{job}.root', 'recreate')
+		out_file = ROOT.TFile(f'/data/bfys/mkoopmans/data/{label}_finalvars_sigsmall/{label}_cut_{job}.root', 'recreate')
 
 		# Apply the filters
 		tree_cut = tree_raw.CopyTree(filter_str)
@@ -95,7 +95,7 @@ def main():
 	bkg_file = filepath + bkg_files
 
 	# Filter the signal, checking that the particle detected is really a hadron
-	sig_filter_str = 'pplus_L0HadronDecision_TOS == 1 || piplus_L0HadronDecision_TOS == 1 || kminus_L0HadronDecision_TOS == 1 || lcplus_L0Global_TOS == 1'
+	sig_filter_str = '(pplus_L0HadronDecision_TOS == 1 || piplus_L0HadronDecision_TOS == 1 || kminus_L0HadronDecision_TOS == 1 || lcplus_L0Global_TOS == 1) && (lcplus_MM > 2440 && lcplus_MM < 2490)'
 	# Cut out the signal mass of the detector signal to get the background signal
 	bkg_filter_str = '(lcplus_MM > 2340 && lcplus_MM < 2440) || (lcplus_MM > 2490 && lcplus_MM < 2590)'
 
@@ -133,7 +133,11 @@ def main():
 		"piplus_IP_OWNPV",
 		"pplus_IP_OWNPV",
 		"kminus_IP_OWNPV",
-		"lcplus_PVConstrainedDTF_chi2"]
+		"lcplus_PVConstrainedDTF_chi2",
+		"lcplus_DIRA_OWNPV",
+		"pplus_TRACK_PCHI2",
+		"kminus_TRACK_PCHI2",
+		"piplus_TRACK_PCHI2"]
 
 	# Call the desired cut function
 	cut_tree_small_files('signal', sig_file, 'MC_Lc2pKpiTuple_25103029.root', sig_subjobs, sig_filter_str, cut_variables, tree_name)

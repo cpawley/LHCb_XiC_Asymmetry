@@ -14,7 +14,7 @@ start_time = time.time()
 def get_correlations(label, tree):
 
 	# Define the file to which to write the correlations
-	corr_file = open(f"correlations/correlations_{label}2.txt", "w")
+	corr_file = open(f"correlations_{label}_more_vars.txt", "w")
 
 	# Get a list of the variables in the tree
 	leaves = tree.GetListOfLeaves()
@@ -67,7 +67,7 @@ if __name__ == '__main__':
 		num_files = 1155
 
 	# The name of the folder where the data is stored
-	folder = f'/data/bfys/mkoopmans/data/{label}'
+	folder = f'/data/bfys/mkoopmans/data/{label}_extravars_sigsmall'
 
 	# Chain all data together
 	chain = ROOT.TChain('DecayTree')

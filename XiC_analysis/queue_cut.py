@@ -25,7 +25,7 @@ os.system(f'echo cd {output_dir} >> {submit_script}')
 os.system(f'echo {run_cmd} >> {submit_script}')
 
 # Define the command to run the script on the cluster and run it
-run_command = f"qsub -j oe -o /data/bfys/mkoopmans/data/cut_data_extra_vars.out {submit_script}"
+run_command = f"qsub -j oe -o /data/bfys/mkoopmans/data/cut_data_final_vars_sigsmall.out {submit_script}"
 os.system(run_command)
 
 # Delete the temporary bash file to keep the directory clean
