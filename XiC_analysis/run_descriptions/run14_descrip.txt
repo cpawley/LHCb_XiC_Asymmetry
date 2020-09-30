@@ -1,0 +1,5 @@
+The changes made in run 13 increased the ROC AUC a little bit again. Niw I am
+curious in which way transforming the variables affects the ROC AUC, so this run
+I ran a BDT with all variables I had before, but without any of them being transformed
+I can than compare the importance of a variable to its transformed counterpart, and
+can thus create the optimal combination of transformed and raw variables.

@@ -1,0 +1,7 @@
+Unfortunately, the results from run 6 with respect to runs 5 and 4 also didn't
+differ too much. Before tweaking the variables further, I think that there may
+also be some tweaking necessary to the cutting of the data. I now only select
+background data with mass either smaller than 2450 or greater than 2480. This
+encapsulates a lot of data, some of which might actually be stray signal. I
+therefor changed the background to only events where lcplus_MM lies between
+2340 and 2440 MeV and between 2490 and 2590 MeV.

@@ -1,0 +1,17 @@
+As mentioned before, the scripts now finally work properly. I analyzed the results of
+run 4 and decided that there was some tweaking to be done. The BDT classified the
+majority of events correctly, however there was still a relatively large overlap between
+the signal and background classifications.
+
+To get rid of this overlap, I tweaked some of the variables. First of all, I removed all
+IPCHI2_OWNPV from the daughter particles, as these were not really showing a difference
+wether they were signal or background. Secondly, I transformed the variables lcplus_FD_OWNPV,
+lcplus_ENDVERTEX_CHI2 and lcplus_IPCHI2_OWNPV using a log transform. I hope this transform
+will amplify the differences between the signal and background data. I made these transformations
+based on research by Emmy Gabriel, a PhD student at Nikhef who is working on something very similar.
+She looks at the decay of XiC_0 to XiC_+ and LambdaC_+, and she also uses a BDT to select signal
+over background.
+
+She however transforms all variables, I will not do this (directly). I first want to see if
+transforming some of the variables results in a noticeable difference in the quality of the
+BDT.

@@ -1,0 +1,6 @@
+After adding the variables from last time, I decided to exclude the TIP's for
+all daughter particles and the PVCDTF_CHI2 because they didn't show any separation
+between the background and signal data whatsoever. I also log-transformed all other
+variables based on the separation they showed. On top of this, Chris mentioned that
+it might be wise to also weed out signal data based on mass. So I took only the data
+with mass between 2440 MeV and 2490 MeV.

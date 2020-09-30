@@ -1,0 +1,7 @@
+Re-adding the IPCHI2_OWNPV variables turned out to be a good idea, as te AUC
+of the ROC jumped ahead some more again. After a consult with Chris we thought
+of some other variables which could benefit the tree. We chose the TIP variable,
+which is the IP of the p-p origin collision of a particle, the IP_OWNPV variable,
+the RAPIDITY variable, which is the angle under which the particle is measured in
+the detector and the PVCDTF_CHI2 (DecayTreeFitter CHI2) for the lcplus particle,
+which tells us how well it is reconstructed.

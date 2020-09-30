@@ -1,0 +1,4 @@
+In this run, nothing too much changed. I transformed all other variables with a
+log transform (except for the ProbNNs, they stayed the way they are). I did this
+because there wasn't really any noticeable difference between the results of run 5
+and run 4, so I am now hoping for the best here.
