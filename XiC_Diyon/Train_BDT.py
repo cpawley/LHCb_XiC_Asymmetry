@@ -11,6 +11,7 @@ from array import array
 import psutil
 import ROOT
 import os
+from missing_jobs import skipJob
 
 def train(bkgFile, sigFile, discriList, transfoList, MVAmethod, nTraining, label, cuts, numtrees, outDir):
 
@@ -27,6 +28,12 @@ def train(bkgFile, sigFile, discriList, transfoList, MVAmethod, nTraining, label
     # Define the TMVA factory and dataloader
     factory = ROOT.TMVA.Factory(MVAmethod, file_MVA)
     dataloader = ROOT.TMVA.DataLoader(label)
+
+    bkg_label = "background"
+    sig_label = "signal"
+
+    bkg_job = "115"
+    sig_job = "108"
 
     bkg_files = 184
     sig_files = 282
@@ -45,7 +52,8 @@ def train(bkgFile, sigFile, discriList, transfoList, MVAmethod, nTraining, label
     # Load in all background trees
     for num in range(bkg_files):
 
-        print(num)
+        if(skipJob(bkg_label, bkg_job, num)):
+            continue
 
         bkg_files_list[num] = ROOT.TFile.Open(bkgFile + f'/background_cut_{num}.root', "READONLY")
         bkg_trees_list[num] = bkg_files_list[num].Get("DecayTree")
@@ -58,6 +66,9 @@ def train(bkgFile, sigFile, discriList, transfoList, MVAmethod, nTraining, label
 
     # Load in all signal trees
     for num in range(sig_files):
+
+        if(skipJob(sig_label, sig_job, num)):
+            continue
 
         sig_files_list[num] = ROOT.TFile.Open(sigFile + f'/signal_cut_{num}.root', "READONLY")
         sig_trees_list[num] = sig_files_list[num].Get("DecayTree")
