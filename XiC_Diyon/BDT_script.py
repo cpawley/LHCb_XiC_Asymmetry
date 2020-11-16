@@ -39,7 +39,7 @@ def run():
         output = "blinded/"
         
 
-    weights_file = "/data/bfys/dwickrem/weights/BDT_BDT_BDT_Xic_pKpi_run21_100trees.weights.xml"
+    weights_file = "/data/bfys/dwickrem/bdt_train_outputs/BDT_run22/BDT_Xic_pKpi_run22_100trees/weights/BDT_BDT_BDT_Xic_pKpi_run22_100trees.weights.xml"
 
     total_files = ["Xic_total.root"]
 

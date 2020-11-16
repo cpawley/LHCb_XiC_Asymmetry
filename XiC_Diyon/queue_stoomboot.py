@@ -7,7 +7,7 @@ Author: Maris Koopmans
 import os, sys
 
 # Indicate which run we're testing
-run = 22
+run = 23
 
 # Boost the tree with some different amount of trees
 ntrees = [100]#, 200, 400, 650, 800, 1200, 2000]
