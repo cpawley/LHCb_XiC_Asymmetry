@@ -16,8 +16,8 @@ def main(run_num, numtrees, outDir):
 	start_time = time.time()
 
 	# Define paths to the signal and background folder
-	sig_folder = '/data/bfys/mkoopmans/data/signal_finalvars_sigsmall'
-	bkg_folder = '/data/bfys/mkoopmans/data/background_finalvars_sigsmall'
+	sig_folder = '/data/bfys/dwickrem/sig_bkg_folder/signal_finalvars_sigsmall'
+	bkg_folder = '/data/bfys/dwickrem/sig_bkg_folder/background_finalvars_sigsmall'
                 
 
 	# Define the MVA method, fraction of events to be used for training

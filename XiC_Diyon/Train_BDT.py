@@ -28,8 +28,8 @@ def train(bkgFile, sigFile, discriList, transfoList, MVAmethod, nTraining, label
     factory = ROOT.TMVA.Factory(MVAmethod, file_MVA)
     dataloader = ROOT.TMVA.DataLoader(label)
 
-    bkg_files = 1155
-    sig_files = 13
+    bkg_files = 184
+    sig_files = 282
 
     Nproc1 = 0
     Nproc2 = 0
