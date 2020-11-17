@@ -52,10 +52,10 @@ def main (argv):
         #just to keep us informed
         
         #getthedata - to be more complex in future
+        print(InputDir+"{0}_{1}_blinded/random_data/{2}".format(years[0],magPol[0],datasets[0]))
+        f1 = ROOT.TFile.Open(InputDir+"{0}_{1}_blinded/random_data/{2}".format(years[0],magPol[0],datasets[0]))
 
-        f1 = ROOT.TFile.Open(InputDir&"{1}_{2}_blinded/random_data/{3}".format(years[0],magPol[0],datasets[0]))
-
-        f2 = ROOT.TFile.Open(InputDir&"{1}_{2}_blinded/random_data/{3}".format(years[0],magPol[0],datasets[1]))
+        f2 = ROOT.TFile.Open(InputDir+"{0}_{1}_blinded/random_data/{2}".format(years[0],magPol[0],datasets[1]))
         
         tree1=f1.Get("DecayTree")
         tree2.f2.Get("DecayTree")
