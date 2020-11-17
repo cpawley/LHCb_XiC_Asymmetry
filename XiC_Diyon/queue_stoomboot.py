@@ -24,7 +24,7 @@ except OSError:
 for ntree in ntrees:
 
     # Define the command we want to use
-    test_cmd = f'python /user/dwickrem/documents/XiC_analysis/load_and_train.py {run} {ntree} {output_dir}'
+    test_cmd = f'python /user/dwickrem/documents/LHCb_XiC_Asymmetry/XiC_Diyon/load_and_train.py {run} {ntree} {output_dir}'
 
     # Define the script we want to use to execute this command
     submit_script = 'execute_stoomboot.sh'

@@ -12,6 +12,7 @@ Author: Maris Koopmans
 import os, sys
 import time
 import ROOT
+from missing_jobs import skipJob, skipVar
 
 def cut_tree(label, path, extension, jobs, filter_str, variables, tree_name):
     """
@@ -42,7 +43,7 @@ def cut_tree(label, path, extension, jobs, filter_str, variables, tree_name):
     print(f'Succesfully cut and written {label} data to output file')
 
 
-def cut_tree_small_files(label, path, extension, jobs, filter_str, variables, tree_name):
+def cut_tree_small_files(job_folder, label, path, extension, jobs, filter_str, variables, tree_name):
     """
     This function is used to store all 'raw' data in a lot of small files,
     keeping the same structure as in the original data.
@@ -50,10 +51,11 @@ def cut_tree_small_files(label, path, extension, jobs, filter_str, variables, tr
     if not os.path.exists("/data/bfys/dwickrem/sig_bkg_folder/{}_finalvars_sigsmall/".format(label)):
         os.makedirs("/data/bfys/dwickrem/sig_bkg_folder/{}_finalvars_sigsmall/".format(label))
 
+
     # For all small data files, create a new and smaller data file with cuts applied
     for job in range(jobs):
 
-        if(label == "background") and (job == 170):
+        if(skipJob(label, job_folder, job)):
             continue
 
         # Define the file
@@ -67,7 +69,7 @@ def cut_tree_small_files(label, path, extension, jobs, filter_str, variables, tr
         tree_raw.SetBranchStatus('*', False)
         for var in variables:
 
-            if (label == "background") and (var == "lcplus_PVConstrainedDTF_chi2"):
+            if (skipVar(label,var)):
                 continue
 
             tree_raw.SetBranchStatus(var, True)
@@ -100,6 +102,9 @@ def main():
     bkg_subjobs = 185
     signal_tree_name = "tuple_Lc2pKpi/DecayTree"
     background_tree_name = "tuple_Xic2pKpi/DecayTree"
+
+    sig_job = "108"
+    bkg_job = "115"
 
     # Tree file for MC data
     sig_file = filepath + sig_files
@@ -152,8 +157,8 @@ def main():
                      "piplus_TRACK_PCHI2"]
 
     # Call the desired cut function
-    cut_tree_small_files('signal', sig_file, 'MC_Lc2pKpiTuple_26103090.root', sig_subjobs, sig_filter_str, cut_variables, signal_tree_name)
-    cut_tree_small_files('background', bkg_file, 'Xic2pKpiTuple.root', bkg_subjobs, bkg_filter_str, cut_variables, background_tree_name)
+    cut_tree_small_files(sig_job,'signal', sig_file, 'MC_Lc2pKpiTuple_26103090.root', sig_subjobs, sig_filter_str, cut_variables, signal_tree_name)
+    cut_tree_small_files(bkg_job,'background', bkg_file, 'Xic2pKpiTuple.root', bkg_subjobs, bkg_filter_str, cut_variables, background_tree_name)
 
     print(f'Time it took to chain and cut both trees: {time.time() - start_time}')
 
