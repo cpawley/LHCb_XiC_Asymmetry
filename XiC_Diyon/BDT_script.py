@@ -75,7 +75,8 @@ def run():
             runMVA(tot_file, TUPLES+i+"/"+tot_file, directory , weights_file)
 
         print("Done with total files")
-
+        
+        #Just makes sure to get the right directories
         if(random_data):
             for dset in os.listdir(TUPLES+i+"/random_data/"):
 
@@ -163,6 +164,7 @@ def runMVA(file_name, root_file, saving_directory, weights_file):
                  "log(piplus_IPCHI2_OWNPV)", 
                  "log(pplus_IPCHI2_OWNPV)"]  
 
+    #Create an array per variable. The reader needs a variable of type array
     n = 0
     for var in variables:
         exec('var'+str(n)+' = array.array(\'f\',[0])')
@@ -181,6 +183,7 @@ def runMVA(file_name, root_file, saving_directory, weights_file):
     tree.Branch('BDT_response', MVAOutput,'BDT_response/D') 
     N = dataTree.GetEntries()
 
+    #Evaluate each entry, fill tree
     for i in range(N):
 
         if (i%10000 == 0):

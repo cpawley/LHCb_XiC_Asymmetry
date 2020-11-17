@@ -44,7 +44,7 @@ def prepMC():
     if not os.path.exists(MC_PATH):
         os.makedirs(MC_PATH)
     
-    blind_data = True
+    blind_data = False
 
     useful_variables = []
     
@@ -155,7 +155,7 @@ def prepMC():
                        "kminus_IP_OWNPV",
                        "kminus_IPCHI2_OWNPV",
                        "piplus_IPCHI2_OWNPV",
-                       "pplus_IPCHI2_OWNPV"]
+                       "pplus_IPCHI2_OWNPV", "piplus_ID","kminus_ID","pplus_ID","lcplus_ID"]
 
         useful_variables = variables
 
@@ -168,13 +168,13 @@ def prepMC():
     for element in dictionary:
         print("Currently working on "+dictionary[element][0] +"_"+ dictionary[element][1])
         if int(element) > 41 and int(element) < 47:
-            extra_variables = ["lcplus_Hlt1TrackAllL0Decision_TOS", "lcplus_Hlt2CharmHadD2HHHDecision_TOS","*L0*","*Hlt*","*HLT*"]
-            run = 1
             particle = "Lc"
+            extra_variables = ["lcplus_Hlt1TrackAllL0Decision_TOS", "lcplus_Hlt2CharmHadD2HHHDecision_TOS","*L0*","*Hlt*","*HLT*","lcplus_Hlt2CharmHad{}pToPpKmPipTurboDecision_TOS".format(particle)]
+            run = 1
             
         else:
-            extra_variables = ["nSPDHits", "nTracks", "lcplus_Hlt1TrackMVADecision_TOS"]
             particle = dictionary[element][3]
+            extra_variables = ["nSPDHits", "nTracks", "lcplus_Hlt1TrackMVADecision_TOS","lcplus_Hlt2CharmHad{}pToPpKmPipTurboDecision_TOS".format(particle)]
             run = 2
 
         for extra_variable in extra_variables:
@@ -210,7 +210,7 @@ def prepMC():
 
         print("Activating useful branches on the tree")
         tree = setBranch_function(tree, useful_variables)
-        cuts = Imports.getDataCuts(run, blinded = blind_data)
+        cuts = Imports.getMCCuts(particle,run)
 
         tfile.cd()
         print("Skimming tree and writing to a new root file")
@@ -752,12 +752,12 @@ def randomise(script_run):
 
 if __name__ == '__main__':
 
-    start = time.time()
+    #start = time.time()
 
-    script_run = getRun()
+    #script_run = getRun()
 
-    #prepMC()
-    main(script_run)
-    randomise(script_run)
+    prepMC()
+    #main(script_run)
+    #randomise(script_run)
 
-    appendTimeElapsed(TUPLE_PATH+script_run+"/" , script_run, (time.time() - start))
+    #appendTimeElapsed(TUPLE_PATH+script_run+"/" , script_run, (time.time() - start))
