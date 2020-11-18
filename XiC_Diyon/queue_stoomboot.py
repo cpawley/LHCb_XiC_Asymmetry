@@ -7,10 +7,10 @@ Author: Maris Koopmans
 import os, sys
 
 # Indicate which run we're testing
-run = 23
+run = 26
 
 # Boost the tree with some different amount of trees
-ntrees = [100]#, 200, 400, 650, 800, 1200, 2000]
+ntrees = [50,100,200,300,400,500,800,1000,1500,2000]#, 200, 400, 650, 800, 1200, 2000]
 # ntrees = [200, 400, 650]
 
 # Define and create the output directory

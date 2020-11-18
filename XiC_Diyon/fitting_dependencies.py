@@ -31,6 +31,8 @@ def writeFile(text_file, dictionary, year):
     dsets = ["dataset1","dataset2"]
     b_types = ["ptbins","ybins","y_ptbins"]
     
+    tot_bin = "ybins"
+    
     yield_dictionary = {}
     total_yields = []
     x = 0
@@ -57,25 +59,31 @@ def writeFile(text_file, dictionary, year):
             tfile.write("\n** Bin: "+bin_type+" **")
 
             for root_file in dictionary[dataset][bin_type]:
+
+                if "_total.root" in root_file:
+                    continue
+
                 tfile.write("\n{}:{}".format(root_file, dictionary[dataset][bin_type][root_file]["results"]))
                 
                 strings = dictionary[dataset][bin_type][root_file]["results"].split(":")
-                
-                x += float(strings[0])
 
                 yield_dictionary[bin_type][dataset][root_file][0] = float(strings[0])
                 yield_dictionary[bin_type][dataset][root_file][1] = float(strings[1])
+                
 
             tfile.write("\n ")
             tfile.write("\n ")
 
-        tfile.write("\n ")
-        tfile.write("\n ")
+        total_yields.append(float(dictionary[dataset][tot_bin][dataset+"_total.root"]["results"].split(":")[0]))
 
-        total_yields.append(x)
-        x = 0
+        tfile.write("\nTotal yield in {}, taken from the {} is : {} +/- {}".format(dataset, tot_bin, dictionary[dataset][tot_bin][dataset+"_total.root"]["results"].split(":")[0], dictionary[dataset][tot_bin][dataset+"_total.root"]["results"].split(":")[1]))
+
+        tfile.write("\n ")
+        tfile.write("\n ")
 
     tfile.write("\n****** RESULTS ******")
+
+    
 
     list1 = []
     list2 = []

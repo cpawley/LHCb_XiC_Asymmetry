@@ -26,14 +26,14 @@ DICTIONARY = {}
 ## For paths and saving directories ##
 YEAR = "2016"
 
-TUPLES = "/data/bfys/dwickrem/root_outputs/blinded_random/run_2/{}/".format(YEAR)
-PDF_OUTPUT = "/data/bfys/dwickrem/pdf_outputs/mass_fits/blinded_random/run_2/{}/".format(YEAR)
-ASYMMETRY_FILE = "/data/bfys/dwickrem/pdf_outputs/mass_fits/blinded_random/run_2/{}/asymmetry.txt".format(YEAR)
-DICTIONARY_FILE = "/data/bfys/dwickrem/pdf_outputs/mass_fits/blinded_random/run_2/{}/fitting_dictionary.py".format(YEAR)
+TUPLES = "/data/bfys/dwickrem/root_outputs/blinded_random/run_2_BDT1/{}/".format(YEAR)
+PDF_OUTPUT = "/data/bfys/dwickrem/pdf_outputs/mass_fits/blinded_random/run_2_BDT1/{}/".format(YEAR)
+ASYMMETRY_FILE = "/data/bfys/dwickrem/pdf_outputs/mass_fits/blinded_random/run_2_BDT1/{}/asymmetry.txt".format(YEAR)
+DICTIONARY_FILE = "/data/bfys/dwickrem/pdf_outputs/mass_fits/blinded_random/run_2_BDT1/{}/fitting_dictionary.py".format(YEAR)
 SETS = ["dataset1", "dataset2"]
 TUPLE_BINS = ["ptbins","ybins","y_ptbins"]
 
-sys.path.insert(0, "/data/bfys/dwickrem/pdf_outputs/mass_fits/blinded_random/run_2/{}/".format(YEAR))
+sys.path.insert(0, "/data/bfys/dwickrem/pdf_outputs/mass_fits/blinded_random/run_2_BDT1/{}/".format(YEAR))
 
 ## For histogram ##
 MEMORY = "/data/bfys/dwickrem/root_outputs/"
@@ -127,6 +127,7 @@ def fit_signal(variable, root_file, out_directory, dset, bin_type, refit_diction
     f = ROOT.TFile.Open(root_file, "READ")
     tree = f.Get("DecayTree")
 
+    #Memory handling
     testFile = ROOT.TFile.Open(MEMORY+"temp.root","RECREATE")
     testFile.cd()
 
@@ -287,10 +288,16 @@ def fit_signal(variable, root_file, out_directory, dset, bin_type, refit_diction
     os.system("rm -rf {}".format(MEMORY+"temp.root"))
     print("Done for "+name)
 
+"""
 
+Runs fits for all data
+
+"""
 def runFits():
 
     print("Running fits")
+
+    tot_file_bin = "ybins"
 
     if not os.path.exists(PDF_OUTPUT):
         os.makedirs(PDF_OUTPUT)
@@ -311,6 +318,11 @@ def runFits():
 
         DICTIONARY[dset] = bin_dict
 
+    #Add 'placeholders' for total files
+    for dset in SETS:
+        DICTIONARY[dset][tot_file_bin][dset+"_total.root"] = {"results" : ""}
+
+    #Fit data
     for dset in SETS:
         for bin_type in TUPLE_BINS:
             for root_file in os.listdir(TUPLES+dset+"/"+bin_type+"/"):
@@ -321,6 +333,26 @@ def runFits():
                     os.makedirs(outDir)
 
                 fit_signal(VAR, TUPLES+dset+"/"+bin_type+"/"+root_file , outDir, dset, bin_type)
+
+                
+    print("Writing total files")
+
+    for dset in SETS:
+        
+        d_file = ROOT.TFile.Open(PDF_OUTPUT+dset+"/"+dset+"_total.root","RECREATE")
+
+        d_tree = ROOT.TChain("DecayTree")
+
+        for root_file in os.listdir(TUPLES+dset+"/"+tot_file_bin+"/"):
+            d_tree.Add(TUPLES+dset+"/"+tot_file_bin+"/"+root_file)
+            
+        d_file.cd()
+        d_tree.Write("", ROOT.TObject.kOverwrite)
+        d_file.Write("", ROOT.TObject.kOverwrite)
+        d_file.Close()
+
+        fit_signal(VAR, PDF_OUTPUT+dset+"/"+dset+"_total.root", PDF_OUTPUT+dset+"/", dset, tot_file_bin)
+            
                 
     print("Writing file")
     
@@ -330,6 +362,12 @@ def runFits():
 
     print("\nDone")
     print("\nTo refit, use >python fit_data.py <dataset>:<bin>:<root_file>")
+
+"""
+
+Writes a dictionary in a readable format
+
+"""
 
 def writeDict(path, dictionary):
     python_file = open(path,"w")
