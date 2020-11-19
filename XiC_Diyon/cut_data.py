@@ -56,6 +56,7 @@ def cut_tree_small_files(job_folder, label, path, extension, jobs, filter_str, v
     for job in range(jobs):
 
         if(skipJob(label, job_folder, job)):
+            print("skipped this: {} - job{} - subjob{}".format(label, job_folder, job))
             continue
 
         # Define the file
@@ -113,11 +114,16 @@ def main():
 
     # Filter the signal, checking that the particle detected is really a hadron
     sig_filter_str = '(pplus_L0HadronDecision_TOS == 1 || piplus_L0HadronDecision_TOS == 1 || kminus_L0HadronDecision_TOS == 1 || lcplus_L0Global_TOS == 1) && (lcplus_MM > 2440 && lcplus_MM < 2490)'
+
+    #This was quick and dirty. Need to implement a check in the future for which run, year and particle you're doing it for
+    sig_filter_str += ' && abs(piplus_ID)==211 && abs(kminus_ID)==321 && abs(pplus_ID)==2212 && abs(lcplus_ID)==4122 && lcplus_Hlt2CharmHadXicpToPpKmPipTurboDecision_TOS == 1'
+
     # Cut out the signal mass of the detector signal to get the background signal
     bkg_filter_str = '(lcplus_MM > 2340 && lcplus_MM < 2440)'# || (lcplus_MM > 2490) && lcplus_MM < 2590)'
 
     # List of all variables to be used for cutting the data
-    cut_variables = ["lcplus_PT",
+    # Don't include any particle IDs or anything that might unblind data here
+    bkg_variables = ["lcplus_PT",
                      "lcplus_ENDVERTEX_CHI2",
                      "lcplus_IPCHI2_OWNPV",
                      "lcplus_FD_OWNPV",
@@ -156,9 +162,18 @@ def main():
                      "kminus_TRACK_PCHI2",
                      "piplus_TRACK_PCHI2"]
 
+    sig_variables = bkg_variables
+    
+    #These variables must be the same as those used in the cuts for signal files
+    #That is the only difference between bkg and sig cuts
+    add_vars = ["piplus_ID" , "kminus_ID" , "pplus_ID" , "lcplus_ID" , "lcplus_Hlt2CharmHadXicpToPpKmPipTurboDecision_TOS"]
+    
+    for v in add_vars:
+        sig_variables.append(v)
+
     # Call the desired cut function
-    cut_tree_small_files(sig_job,'signal', sig_file, 'MC_Lc2pKpiTuple_26103090.root', sig_subjobs, sig_filter_str, cut_variables, signal_tree_name)
-    cut_tree_small_files(bkg_job,'background', bkg_file, 'Xic2pKpiTuple.root', bkg_subjobs, bkg_filter_str, cut_variables, background_tree_name)
+    cut_tree_small_files(sig_job,'signal', sig_file, 'MC_Lc2pKpiTuple_26103090.root', sig_subjobs, sig_filter_str, sig_variables, signal_tree_name)
+    cut_tree_small_files(bkg_job,'background', bkg_file, 'Xic2pKpiTuple.root', bkg_subjobs, bkg_filter_str, bkg_variables, background_tree_name)
 
     print(f'Time it took to chain and cut both trees: {time.time() - start_time}')
 
