@@ -48,8 +48,8 @@ def cut_tree_small_files(job_folder, label, path, extension, jobs, filter_str, v
     This function is used to store all 'raw' data in a lot of small files,
     keeping the same structure as in the original data.
     """
-    if not os.path.exists("/data/bfys/dwickrem/sig_bkg_folder/{}_finalvars_sigsmall/".format(label)):
-        os.makedirs("/data/bfys/dwickrem/sig_bkg_folder/{}_finalvars_sigsmall/".format(label))
+    if not os.path.exists("/data/bfys/dwickrem/sig_bkg_folder/{}_newcuts/".format(label)):
+        os.makedirs("/data/bfys/dwickrem/sig_bkg_folder/{}_newcuts/".format(label))
 
 
     # For all small data files, create a new and smaller data file with cuts applied
@@ -76,7 +76,7 @@ def cut_tree_small_files(job_folder, label, path, extension, jobs, filter_str, v
             tree_raw.SetBranchStatus(var, True)
 
         # Define the output file
-        out_file = ROOT.TFile("/data/bfys/dwickrem/sig_bkg_folder/{}_finalvars_sigsmall/{}_cut_{}.root".format(label,label,job), "RECREATE")
+        out_file = ROOT.TFile("/data/bfys/dwickrem/sig_bkg_folder/{}_newcuts/{}_cut_{}.root".format(label,label,job), "RECREATE")
             
         # Apply the filters
         tree_cut = tree_raw.CopyTree(filter_str)
@@ -125,6 +125,7 @@ def main():
     # Don't include any particle IDs or anything that might unblind data here
     bkg_variables = ["lcplus_PT",
                      "lcplus_ENDVERTEX_CHI2",
+                     "lcplus_ENDVERTEX_NDOF",
                      "lcplus_IPCHI2_OWNPV",
                      "lcplus_FD_OWNPV",
                      "pplus_ProbNNp",
@@ -160,7 +161,28 @@ def main():
                      "lcplus_DIRA_OWNPV",
                      "pplus_TRACK_PCHI2",
                      "kminus_TRACK_PCHI2",
-                     "piplus_TRACK_PCHI2"]
+                     "piplus_TRACK_PCHI2",
+                     "pplus_MC15TuneV1_ProbNNp",
+                     "pplus_MC15TuneV1_ProbNNk",
+                     "pplus_MC15TuneV1_ProbNNpi",
+                     "pplus_MC15TuneV1_ProbNNghost",
+                     "kminus_MC15TuneV1_ProbNNp",
+                     "kminus_MC15TuneV1_ProbNNk",
+                     "kminus_MC15TuneV1_ProbNNpi",
+                     "kminus_MC15TuneV1_ProbNNghost",
+                     "piplus_MC15TuneV1_ProbNNp",
+                     "piplus_MC15TuneV1_ProbNNk",
+                     "piplus_MC15TuneV1_ProbNNpi",
+                     "piplus_MC15TuneV1_ProbNNghost",
+                     "pplus_P",
+                     "kminus_P", 
+                     "piplus_P", 
+                     "kminus_PIDK", 
+                     "kminus_PIDp",
+                     "piplus_PIDK", 
+                     "piplus_PIDp",
+                     "pplus_PIDK", 
+                     "pplus_PIDp"]
 
     sig_variables = bkg_variables
     

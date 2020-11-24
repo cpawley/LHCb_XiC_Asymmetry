@@ -43,7 +43,7 @@ BINS = 300
 
 RANGE = [2360,2570]
 
-VAR_RANGE = [2400,2540]
+VAR_RANGE = [2400,2536]
 
 X = "Mass MeV/c^{2}"
 
@@ -51,12 +51,12 @@ Y = "Events"
 
 T = "Plot of {}".format(VAR)
 
-CUTS = "BDT_response > -0.05"
+CUTS = "BDT_response > -0.06"
 
 ## Tuples and outputs ##
 YEARS = ["2016"]
 
-RUN = "run_2"
+RUN = "run_3"
 
 TUPLES = "/data/bfys/dwickrem/root_outputs/blinded_random/{}/".format(RUN)
 
@@ -523,6 +523,17 @@ def fit_data(root_file, year = None, shapes = ["G","E","CB"] , variable = None, 
     
 
 if __name__ == '__main__':
+
+    if (len(sys.argv)<2):
+        print("Improper handle to run this script. Please use one of the following: ")
+        
+        i = 0
+        for handle in HANDLES:
+            print(handle+" :")
+            print(HANDLE_DESC[i])
+            print("")
+            i+=1
+        sys.exit()
     
     option = sys.argv[1]
 
@@ -536,21 +547,28 @@ if __name__ == '__main__':
             print("")
             i+=1
 
+        sys.exit()
+
     else:
         #1
         if (option == HANDLES[0]):
             if (len(sys.argv) == 3):
                 plot_histogram(sys.argv[2])
+            sys.exit()
 
         #2
         if(option == HANDLES[1]):
             if (len(sys.argv) == 3):
                 fit_data(sys.argv[2])
 
-            if (len(sys.argv) == 7):
+            elif (len(sys.argv) == 7):
                 fit_data(sys.argv[2], None, shapes = sys.argv[3], variable = sys.argv[4], cuts = sys.argv[5], out_dir = sys.argv[6], dset = None,bin_type= None,refit_dictionary= None)
+                
+            else:
+                print("Your arguments are incorrect. Check your function")
 
-            print("Your arguments are incorrect. Check your function")
+            sys.exit()
+            
             
 
         #3
@@ -586,6 +604,8 @@ if __name__ == '__main__':
             else:
                 text.close()
                 print("Your arguments are incorrect. Check your function")
+                
+            sys.exit()
 
             
 
@@ -654,6 +674,8 @@ if __name__ == '__main__':
                     print(flag)
 
             print("To refit, use python fit.py -refit <year>:<dset>:<bin>:<file>")
+
+            sys.exit()
             
 
                 
