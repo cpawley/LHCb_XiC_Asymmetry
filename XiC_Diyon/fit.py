@@ -43,7 +43,7 @@ BINS = 300
 
 RANGE = [2360,2570]
 
-VAR_RANGE = [2400,2536]
+VAR_RANGE = [2400,2530]
 
 X = "Mass MeV/c^{2}"
 
@@ -51,7 +51,7 @@ Y = "Events"
 
 T = "Plot of {}".format(VAR)
 
-CUTS = "BDT_response > -0.06"
+CUTS = "BDT_response > -0.12"
 
 ## Tuples and outputs ##
 YEARS = ["2016"]
@@ -432,35 +432,35 @@ def fit_data(root_file, year = None, shapes = ["G","E","CB"] , variable = None, 
         normArgList.add(bkgNorm)
         components.append("bkg")
 
-        #CB depends on E
         
-        if "CB" in shape:
+        
+    if "CB" in shape:
             
-            if (refit_dictionary == None):
+        if (refit_dictionary == None):
 
-                CB_PARAMS = cb_params
-                CBNP = getCBNormParams(N)
+            CB_PARAMS = cb_params
+            CBNP = getCBNormParams(N)
             
-                if (dset != None) and (bin_type != None) and (year != None):
-                    DICTIONARY[dset][bin_type][file_name]["cbParams"] = CB_PARAMS
-                    DICTIONARY[dset][bin_type][file_name]["cbNormParams"] = [CBNP[0]/N , CBNP[1]/N , CBNP[2]/N]
+            if (dset != None) and (bin_type != None) and (year != None):
+                DICTIONARY[dset][bin_type][file_name]["cbParams"] = CB_PARAMS
+                DICTIONARY[dset][bin_type][file_name]["cbNormParams"] = [CBNP[0]/N , CBNP[1]/N , CBNP[2]/N]
 
-            else:
-                CB_PARAMS = refit_dictionary[dset][bin_type][file_name]["cbParams"]
-                CBNP = []
-                for cbparam in refit_dictionary[dset][bin_type][file_name]["cbNormParams"]:
-                    CBNP.append(cbparam * N)
+        else:
+            CB_PARAMS = refit_dictionary[dset][bin_type][file_name]["cbParams"]
+            CBNP = []
+            for cbparam in refit_dictionary[dset][bin_type][file_name]["cbNormParams"]:
+                CBNP.append(cbparam * N)
 
-            cbw = ROOT.RooRealVar("cbw","cbw", CB_PARAMS[0], CB_PARAMS[1], CB_PARAMS[2])
-            cba = ROOT.RooRealVar("cba","cba", EXPONENTIAL_PARAMS[0], EXPONENTIAL_PARAMS[1], EXPONENTIAL_PARAMS[2])
-            cbn = ROOT.RooRealVar("cbn","cbn", CB_PARAMS[3], CB_PARAMS[4], CB_PARAMS[5])
-            cbNorm = ROOT.RooRealVar("cbNorm","cbNorm", CBNP[0], CBNP[1], CBNP[2])
+        cbw = ROOT.RooRealVar("cbw","cbw", CB_PARAMS[0], CB_PARAMS[1], CB_PARAMS[2])
+        cba = ROOT.RooRealVar("cba","cba", EXPONENTIAL_PARAMS[0], EXPONENTIAL_PARAMS[1], EXPONENTIAL_PARAMS[2])
+        cbn = ROOT.RooRealVar("cbn","cbn", CB_PARAMS[3], CB_PARAMS[4], CB_PARAMS[5])
+        cbNorm = ROOT.RooRealVar("cbNorm","cbNorm", CBNP[0], CBNP[1], CBNP[2])
 
-            CB = ROOT.RooCBShape("CB","CB", rvar, gaussMean, cbw, cba, cbn)
+        CB = ROOT.RooCBShape("CB","CB", rvar, gaussMean, cbw, cba, cbn)
 
-            argList.add(CB)
-            normArgList.add(cbNorm)
-            components.append("CB")
+        argList.add(CB)
+        normArgList.add(cbNorm)
+        components.append("CB")
 
     model = ROOT.RooAddPdf("model" , "model", argList, normArgList)
     rHist = ROOT.RooDataHist("rHist", "rHist", ROOT.RooArgList(rvar), histogram)
@@ -483,6 +483,8 @@ def fit_data(root_file, year = None, shapes = ["G","E","CB"] , variable = None, 
     e = normArgList[0].getError()
     chi = frame.chiSquare()
 
+    print("Nbkg: {} +/- {}".format(str(normArgList[1].getValV()),str(normArgList[1].getError())))
+
     if (chi < 0.4) or (chi > 2):
         flags.append("{}:{}:{}:{}".format(year,dset,bin_type,file_name))
 
@@ -495,8 +497,7 @@ def fit_data(root_file, year = None, shapes = ["G","E","CB"] , variable = None, 
     legend.SetTextSize(0.03)
     legend.SetTextColor(1)
     legend.Draw("same")
-    
-    frame.SetMinimum(0)
+
     frame.Draw("same")
 
     if (refit_dictionary == None) and (year != None):
@@ -622,7 +623,7 @@ if __name__ == '__main__':
 
                     print("Making the total file")
 
-                    tot_file = ROOT.TFile.Open(PDF_OUTPUT+year+"/"+ds+"/"+ds+"_total.root","RECREATE")
+                    tot_file = ROOT.TFile.Open(TUPLES+year+"/"+ds+"/"+ds+"_total.root","RECREATE")
 
                     tot_tree = ROOT.TChain("DecayTree")
 
@@ -640,7 +641,7 @@ if __name__ == '__main__':
                     if not os.path.exists(out):
                         os.makedirs(out)
                     
-                    fit_data(TUPLES+year+"/"+ds+"/"+ds+"_total.root", shapes = ["G","E","CB"] , year = year, variable = VAR, cuts = "BDT_response > -0.05", out_dir = out, dset = ds, bin_type = "ybins", refit_dictionary = None)
+                    fit_data(TUPLES+year+"/"+ds+"/"+ds+"_total.root", shapes = ["G","E"] , year = year, variable = VAR, cuts = CUTS, out_dir = out, dset = ds, bin_type = "ybins", refit_dictionary = None)
                     
                     tot_file.Close()
 
@@ -658,7 +659,7 @@ if __name__ == '__main__':
                             if not os.path.exists(out):
                                 os.makedirs(out)
                                 
-                            fit_data(TUPLES+year+"/"+ds+"/"+b+"/"+root_file, shapes = ["G","E","CB"] , year = year, variable = VAR, cuts = "BDT_response > -0.05", out_dir = out, dset = ds, bin_type = b, refit_dictionary = None)
+                            fit_data(TUPLES+year+"/"+ds+"/"+b+"/"+root_file, shapes = ["G","E"] , year = year, variable = VAR, cuts = CUTS, out_dir = out, dset = ds, bin_type = b, refit_dictionary = None)
 
 
                 print("Writing files...")
