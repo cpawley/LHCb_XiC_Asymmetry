@@ -39,7 +39,7 @@ def run():
         output = "blinded/"
         
 
-    weights_file = "/data/bfys/dwickrem/bdt_train_outputs/BDT_run61/BDT_Xic_pKpi_run61_100trees/weights/BDT_BDT_BDT_Xic_pKpi_run61_100trees.weights.xml"
+    weights_file = "/data/bfys/dwickrem/bdt_train_outputs/BDT_run66/BDT_Xic_pKpi_run66_100trees/weights/BDT_BDT_BDT_Xic_pKpi_run66_100trees.weights.xml"
 
     total_files = ["Xic_total.root"]
 
@@ -242,9 +242,6 @@ def runMVA(file_name, root_file, saving_directory, weights_file):
                 'piplus_ProbNNpi',
                 'pplus_ProbNNp',
                 'kminus_ProbNNk',
-                'pplus_TRACK_PCHI2',
-                'piplus_TRACK_PCHI2',
-                'kminus_TRACK_PCHI2',
                 'pplus_MC15TuneV1_ProbNNp',
                 'pplus_MC15TuneV1_ProbNNk',
                 'pplus_MC15TuneV1_ProbNNpi',
@@ -261,7 +258,6 @@ def runMVA(file_name, root_file, saving_directory, weights_file):
     for t in transformed_variables:
         variables.append(t)
 
-    print(len(variables))
 
     #Create an array per variable. The reader needs a variable of type array
     n = 0
@@ -343,7 +339,7 @@ if __name__ == '__main__':
 
         saving_directory = sys.argv[2]
 
-        wf = "/data/bfys/dwickrem/bdt_train_outputs/BDT_run61/BDT_Xic_pKpi_run61_100trees/weigts/BDT_BDT_BDT_Xic_pKpi_run61_100trees.weights.xml"
+        wf = "/data/bfys/dwickrem/bdt_train_outputs/BDT_run66/BDT_Xic_pKpi_run66_100trees/weights/BDT_BDT_BDT_Xic_pKpi_run66_100trees.weights.xml"
 
         runMVA(name, root_file, saving_directory, wf)
 
