@@ -1,0 +1,378 @@
+This is an auto-generated description file for: run_1
+Tuple preparation was done for the following data:
+ - 2016_MagDown
+Blinded: Yes
+There were 55 variables used in this preparation of tuples
+Extra variables may have been used. Check tuple_prep.py for these variables as they are not listed here
+Variables used to create trees: 
+ - lcplus_MM
+ - lcplus_P
+ - lcplus_PT
+ - lcplus_ETA
+ - lcplus_RAPIDITY
+ - lcplus_TIP
+ - lcplus_IPCHI2_OWNPV
+ - lcplus_OWNPV_CHI2
+ - lcplus_TAU
+ - lcplus_IP_OWNPV
+ - lcplus_L0HadronDecision_TOS
+ - lcplus_FD_OWNPV
+ - lcplus_ENDVERTEX_CHI2
+ - pplus_M
+ - pplus_P
+ - pplus_PT
+ - pplus_RAPIDITY
+ - pplus_ETA
+ - pplus_ProbNNp
+ - pplus_OWNPV_CHI2
+ - kminus_OWNPV_CHI2
+ - piplus_OWNPV_CHI2
+ - piplus_M
+ - piplus_P
+ - piplus_PT
+ - piplus_RAPIDITY
+ - piplus_ETA
+ - piplus_ProbNNpi
+ - piplus_IP_OWNPV
+ - pplus_PIDp
+ - kminus_M
+ - kminus_P
+ - kminus_PT
+ - kminus_RAPIDITY
+ - kminus_ETA
+ - kminus_ProbNNk
+ - kminus_PIDK
+ - PVNTRACKS
+ - piplus_PX
+ - pplus_PX
+ - kminus_PX
+ - piplus_PY
+ - pplus_PY
+ - kminus_PY
+ - piplus_PZ
+ - pplus_PZ
+ - kminus_PZ
+ - pplus_IP_OWNPV
+ - kminus_IP_OWNPV
+ - kminus_IPCHI2_OWNPV
+ - piplus_IPCHI2_OWNPV
+ - pplus_IPCHI2_OWNPV
+ - pplus_TRACK_PCHI2
+ - piplus_TRACK_PCHI2
+ - kminus_TRACK_PCHI2
+***Displayed below are the results of the randomisation process***
+ 
+
+** FOR 2016_MagDown_blinded DATA **
+ * Xic_ybin_2.0-2.5.rootXic_cluster_0-0.root
+ Total events: 913337
+Events in tree1: 455521
+Events in tree2: 457816
+Unused events: 0
+Asymmetry: -0.002512763634890517
+ 
+** FOR 2016_MagDown_blinded DATA **
+ * Xic_ybin_2.5-3.0.rootXic_cluster_0-0.root
+ Total events: 1643648
+Events in tree1: 821944
+Events in tree2: 821704
+Unused events: 0
+Asymmetry: 0.00014601666536874074
+ 
+** FOR 2016_MagDown_blinded DATA **
+ * Xic_ybin_3.0-3.5.rootXic_cluster_0-0.root
+ Total events: 2721260
+Events in tree1: 1361474
+Events in tree2: 1359786
+Unused events: 0
+Asymmetry: 0.0006203008900288837
+ 
+** FOR 2016_MagDown_blinded DATA **
+ * Xic_ybin_3.5-4.0.rootXic_cluster_0-0.root
+ Total events: 3672832
+Events in tree1: 1836637
+Events in tree2: 1836195
+Unused events: 0
+Asymmetry: 0.00012034310308775354
+ 
+** FOR 2016_MagDown_blinded DATA **
+ * Xic_ptbin_3200-4000.rootXic_cluster_0-0.root
+ Total events: 960422
+Events in tree1: 481295
+Events in tree2: 479127
+Unused events: 0
+Asymmetry: 0.0022573410438328154
+ 
+** FOR 2016_MagDown_blinded DATA **
+ * Xic_ptbin_4000-5000.rootXic_cluster_0-0.root
+ Total events: 1479240
+Events in tree1: 738440
+Events in tree2: 740800
+Unused events: 0
+Asymmetry: -0.0015954138611719531
+ 
+** FOR 2016_MagDown_blinded DATA **
+ * Xic_ptbin_5000-6000.rootXic_cluster_0-0.root
+ Total events: 1448647
+Events in tree1: 724613
+Events in tree2: 724034
+Unused events: 0
+Asymmetry: 0.000399683290684342
+ 
+** FOR 2016_MagDown_blinded DATA **
+ * Xic_ptbin_6000-7000.rootXic_cluster_0-0.root
+ Total events: 1277324
+Events in tree1: 638157
+Events in tree2: 639167
+Unused events: 0
+Asymmetry: -0.0007907155897798836
+ 
+** FOR 2016_MagDown_blinded DATA **
+ * Xic_ptbin_7000-8000.rootXic_cluster_0-0.root
+ Total events: 1075057
+Events in tree1: 538386
+Events in tree2: 536671
+Unused events: 0
+Asymmetry: 0.0015952642511048252
+ 
+** FOR 2016_MagDown_blinded DATA **
+ * Xic_ptbin_8000-10000.rootXic_cluster_0-0.root
+ Total events: 1550593
+Events in tree1: 774303
+Events in tree2: 776290
+Unused events: 0
+Asymmetry: -0.0012814452277290043
+ 
+** FOR 2016_MagDown_blinded DATA **
+ * Xic_ptbin_10000-20000.rootXic_cluster_0-0.root
+ Total events: 1834746
+Events in tree1: 918086
+Events in tree2: 916660
+Unused events: 0
+Asymmetry: 0.0007772192990201369
+ 
+** FOR 2016_MagDown_blinded DATA **
+ * Xic_ybin_2.0-2.5_ptbin_3200-4000.rootXic_cluster_0-0.root
+ Total events: 1904
+Events in tree1: 970
+Events in tree2: 934
+Unused events: 0
+Asymmetry: 0.018907563025210083
+ 
+** FOR 2016_MagDown_blinded DATA **
+ * Xic_ybin_2.0-2.5_ptbin_4000-5000.rootXic_cluster_0-0.root
+ Total events: 9192
+Events in tree1: 4582
+Events in tree2: 4610
+Unused events: 0
+Asymmetry: -0.0030461270670147957
+ 
+** FOR 2016_MagDown_blinded DATA **
+ * Xic_ybin_2.0-2.5_ptbin_5000-6000.rootXic_cluster_0-0.root
+ Total events: 26728
+Events in tree1: 13336
+Events in tree2: 13392
+Unused events: 0
+Asymmetry: -0.0020951810835079317
+ 
+** FOR 2016_MagDown_blinded DATA **
+ * Xic_ybin_2.0-2.5_ptbin_6000-7000.rootXic_cluster_0-0.root
+ Total events: 56980
+Events in tree1: 28453
+Events in tree2: 28527
+Unused events: 0
+Asymmetry: -0.0012987012987012987
+ 
+** FOR 2016_MagDown_blinded DATA **
+ * Xic_ybin_2.0-2.5_ptbin_7000-8000.rootXic_cluster_0-0.root
+ Total events: 87439
+Events in tree1: 43591
+Events in tree2: 43848
+Unused events: 0
+Asymmetry: -0.002939191893777376
+ 
+** FOR 2016_MagDown_blinded DATA **
+ * Xic_ybin_2.0-2.5_ptbin_8000-10000.rootXic_cluster_0-0.root
+ Total events: 218738
+Events in tree1: 109241
+Events in tree2: 109497
+Unused events: 0
+Asymmetry: -0.0011703499163382676
+ 
+** FOR 2016_MagDown_blinded DATA **
+ * Xic_ybin_2.0-2.5_ptbin_10000-20000.rootXic_cluster_0-0.root
+ Total events: 481884
+Events in tree1: 240915
+Events in tree2: 240969
+Unused events: 0
+Asymmetry: -0.00011206016385686182
+ 
+** FOR 2016_MagDown_blinded DATA **
+ * Xic_ybin_2.5-3.0_ptbin_3200-4000.rootXic_cluster_0-0.root
+ Total events: 25703
+Events in tree1: 12896
+Events in tree2: 12807
+Unused events: 0
+Asymmetry: 0.003462630821304906
+ 
+** FOR 2016_MagDown_blinded DATA **
+ * Xic_ybin_2.5-3.0_ptbin_4000-5000.rootXic_cluster_0-0.root
+ Total events: 68464
+Events in tree1: 34129
+Events in tree2: 34335
+Unused events: 0
+Asymmetry: -0.003008880579574667
+ 
+** FOR 2016_MagDown_blinded DATA **
+ * Xic_ybin_2.5-3.0_ptbin_5000-6000.rootXic_cluster_0-0.root
+ Total events: 119128
+Events in tree1: 59573
+Events in tree2: 59555
+Unused events: 0
+Asymmetry: 0.000151097978644819
+ 
+** FOR 2016_MagDown_blinded DATA **
+ * Xic_ybin_2.5-3.0_ptbin_6000-7000.rootXic_cluster_0-0.root
+ Total events: 171763
+Events in tree1: 86020
+Events in tree2: 85743
+Unused events: 0
+Asymmetry: 0.0016126872492911745
+ 
+** FOR 2016_MagDown_blinded DATA **
+ * Xic_ybin_2.5-3.0_ptbin_7000-8000.rootXic_cluster_0-0.root
+ Total events: 206005
+Events in tree1: 103101
+Events in tree2: 102904
+Unused events: 0
+Asymmetry: 0.0009562874687507585
+ 
+** FOR 2016_MagDown_blinded DATA **
+ * Xic_ybin_2.5-3.0_ptbin_8000-10000.rootXic_cluster_0-0.root
+ Total events: 399457
+Events in tree1: 199439
+Events in tree2: 200018
+Unused events: 0
+Asymmetry: -0.0014494676523380489
+ 
+** FOR 2016_MagDown_blinded DATA **
+ * Xic_ybin_2.5-3.0_ptbin_10000-20000.rootXic_cluster_0-0.root
+ Total events: 605312
+Events in tree1: 302417
+Events in tree2: 302895
+Unused events: 0
+Asymmetry: -0.000789675407062804
+ 
+** FOR 2016_MagDown_blinded DATA **
+ * Xic_ybin_3.0-3.5_ptbin_3200-4000.rootXic_cluster_0-0.root
+ Total events: 186546
+Events in tree1: 93491
+Events in tree2: 93055
+Unused events: 0
+Asymmetry: 0.002337225134819294
+ 
+** FOR 2016_MagDown_blinded DATA **
+ * Xic_ybin_3.0-3.5_ptbin_4000-5000.rootXic_cluster_0-0.root
+ Total events: 343474
+Events in tree1: 171795
+Events in tree2: 171679
+Unused events: 0
+Asymmetry: 0.0003377257084961307
+ 
+** FOR 2016_MagDown_blinded DATA **
+ * Xic_ybin_3.0-3.5_ptbin_5000-6000.rootXic_cluster_0-0.root
+ Total events: 402844
+Events in tree1: 201204
+Events in tree2: 201640
+Unused events: 0
+Asymmetry: -0.0010823048127811261
+ 
+** FOR 2016_MagDown_blinded DATA **
+ * Xic_ybin_3.0-3.5_ptbin_6000-7000.rootXic_cluster_0-0.root
+ Total events: 396207
+Events in tree1: 198150
+Events in tree2: 198057
+Unused events: 0
+Asymmetry: 0.00023472578727786234
+ 
+** FOR 2016_MagDown_blinded DATA **
+ * Xic_ybin_3.0-3.5_ptbin_7000-8000.rootXic_cluster_0-0.root
+ Total events: 345978
+Events in tree1: 173106
+Events in tree2: 172872
+Unused events: 0
+Asymmetry: 0.0006763435825399303
+ 
+** FOR 2016_MagDown_blinded DATA **
+ * Xic_ybin_3.0-3.5_ptbin_8000-10000.rootXic_cluster_0-0.root
+ Total events: 484652
+Events in tree1: 242538
+Events in tree2: 242114
+Unused events: 0
+Asymmetry: 0.0008748545348002278
+ 
+** FOR 2016_MagDown_blinded DATA **
+ * Xic_ybin_3.0-3.5_ptbin_10000-20000.rootXic_cluster_0-0.root
+ Total events: 484468
+Events in tree1: 242618
+Events in tree2: 241850
+Unused events: 0
+Asymmetry: 0.0015852440202448871
+ 
+** FOR 2016_MagDown_blinded DATA **
+ * Xic_ybin_3.5-4.0_ptbin_3200-4000.rootXic_cluster_0-0.root
+ Total events: 561822
+Events in tree1: 281145
+Events in tree2: 280677
+Unused events: 0
+Asymmetry: 0.0008330040475453079
+ 
+** FOR 2016_MagDown_blinded DATA **
+ * Xic_ybin_3.5-4.0_ptbin_4000-5000.rootXic_cluster_0-0.root
+ Total events: 784555
+Events in tree1: 392301
+Events in tree2: 392254
+Unused events: 0
+Asymmetry: 5.990657124102198e-05
+ 
+** FOR 2016_MagDown_blinded DATA **
+ * Xic_ybin_3.5-4.0_ptbin_5000-6000.rootXic_cluster_0-0.root
+ Total events: 673194
+Events in tree1: 336915
+Events in tree2: 336279
+Unused events: 0
+Asymmetry: 0.0009447499532081391
+ 
+** FOR 2016_MagDown_blinded DATA **
+ * Xic_ybin_3.5-4.0_ptbin_6000-7000.rootXic_cluster_0-0.root
+ Total events: 502508
+Events in tree1: 251081
+Events in tree2: 251427
+Unused events: 0
+Asymmetry: -0.0006885462519999682
+ 
+** FOR 2016_MagDown_blinded DATA **
+ * Xic_ybin_3.5-4.0_ptbin_7000-8000.rootXic_cluster_0-0.root
+ Total events: 347907
+Events in tree1: 173690
+Events in tree2: 174217
+Unused events: 0
+Asymmetry: -0.0015147726260178727
+ 
+** FOR 2016_MagDown_blinded DATA **
+ * Xic_ybin_3.5-4.0_ptbin_8000-10000.rootXic_cluster_0-0.root
+ Total events: 372703
+Events in tree1: 186230
+Events in tree2: 186473
+Unused events: 0
+Asymmetry: -0.0006519936786127292
+ 
+** FOR 2016_MagDown_blinded DATA **
+ * Xic_ybin_3.5-4.0_ptbin_10000-20000.rootXic_cluster_0-0.root
+ Total events: 217463
+Events in tree1: 108620
+Events in tree2: 108843
+Unused events: 0
+Asymmetry: -0.0010254618026974704
+ 
+Time elapsed in hours: 1.12360652340783
